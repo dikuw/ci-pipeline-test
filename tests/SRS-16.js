@@ -28,7 +28,7 @@ exports.SRS16 = async ({ itemType, itemNamePrefix }, page) => {
   pass = el ? true : false;
   results.push(pass);
   //  Acceptance criterion 2. All item instances have a Tags field.
-  let elementSelector = '[aria-label="Tags MenuFAIL"] span svg';
+  let elementSelector = '[aria-label="Tags Menu"] span svg';
   pass = await page.$eval(elementSelector, () => true).catch(() => false);
   results.push(pass);
   //  Acceptance criterion 3. All item instances have a Comments field.
