@@ -42,7 +42,7 @@ testRunner = async (server) => {
     
     let results = await SRS16(testParams, page);
 
-    results.some(item => item.pass === false) ? console.log('fail') : console.log('pass');
+    results.some(item => item.pass === []) ? console.log('fail') : console.log('pass');
 
   } catch (err) {
 
