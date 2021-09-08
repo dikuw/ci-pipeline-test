@@ -41,7 +41,7 @@ test("Item instances have Basic Fields according to SRT-12.", async () => {
     let [el] = await page.$x(`//h2[contains(text(), "${itemPrefix}-")]`);
     expect([el].length).toBeGreaterThan(0);
     //  Acceptance criterion 2. All item instances have a Tags field.
-    let elementSelector = '[aria-label="Tags MenuFAIL"] span svg';
+    let elementSelector = '[aria-label="Tags Menu"] span svg';
     el = await page.$eval(elementSelector, () => true).catch(() => false);
     expect([el].length).toBeGreaterThan(0);
     //  Acceptance criterion 3. All item instances have a Comments field.
