@@ -26,6 +26,7 @@ exports.SRS16 = async ({ itemType, itemNamePrefix }, page) => {
   let [el] = await page.$x(`//h2[contains(text(), "${itemPrefix}-")]`);
   results.push({ el });
   //  Acceptance criterion 2. All item instances have a Tags field.
+  await page.evaluate(() => document.querySelector('[aria-label="Tags Menu"]').innerHTML = '<span>⚠️</span>');
   let elementSelector = '[aria-label="Tags Menu"] span svg';
   el = await page.$eval(elementSelector, () => true).catch(() => false);
   results.push({ el });
