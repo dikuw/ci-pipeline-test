@@ -18,7 +18,7 @@ test("Confirm text on page!", async () => {
     );
 
     expect(pageParagraphValue).toContain(
-      "This is a sample text in a paragraph on the page"
+      "This is a sample text in a paragraph on the pageFAIL"
     );
   } finally {
     await browser.close();
