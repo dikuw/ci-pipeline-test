@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-test("Confirm text on page", async () => {
+test("Confirm text on page!", async () => {
   const browser = await puppeteer.launch();
   try {
     const page = await browser.newPage();
@@ -25,7 +25,7 @@ test("Confirm text on page", async () => {
   }
 }, 120000);
 
-test("Confirm form submission output", async () => {
+test("Confirm form submission output!", async () => {
   const browser = await puppeteer.launch();
   try {
     const page = await browser.newPage();
