@@ -22,9 +22,9 @@ jobs:
       #     name: Run the application
       #     command: node server.js
       #     background: true
-      - run:
-          name: Run tests
-          command: npm run test
       # - run:
-      #     name: Run ATT tests
-      #     command: node index.js
+      #     name: Run tests
+      #     command: npm run test
+      - run:
+          name: Run ATT tests
+          command: node index.js

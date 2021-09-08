@@ -11,7 +11,7 @@ const server = app.listen(app.get('port'), () => {
   console.log(`Express running on port ${server.address().port}`);
 });
 
-testRunner = async (server) => {
+testRunner = async () => {
 
   const browser = await puppeteer.launch({ 
     headless: true
@@ -42,15 +42,23 @@ testRunner = async (server) => {
     
     let results = await SRS16(testParams, page);
 
-    results.some(item => item.pass === []) ? console.log('fail') : console.log('pass');
+    await browser.close();
+
+    if (results.some(item => !item)) {
+      console.log('fail');
+      process.exit(1);
+    } else {
+      console.log('pass');
+      process.exit(0);
+    }
+
+    results.some(item => !item) ? console.log('fail') : console.log('pass');
 
   } catch (err) {
 
     console.log(err);
 
   } finally {
-
-    await browser.close();
 
     process.exit(0);
 

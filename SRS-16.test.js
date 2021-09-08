@@ -2,7 +2,13 @@ const puppeteer = require("puppeteer");
 const { login, logout, createItem, openTableView } = require('./tests/shared/shared');
 
 test("Item instances have Basic Fields according to SRT-12.", async () => {
-  const browser = await puppeteer.launch();
+  // const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ 
+    headless: false,
+    defaultViewport: null,
+    args: ['--start-maximized'] 
+  });
+
   const page = await browser.newPage();
   await page.goto("https://test-company.qms-dry-run.nemedio.com");
 
@@ -39,11 +45,13 @@ test("Item instances have Basic Fields according to SRT-12.", async () => {
     }
     //  Acceptance criterion 1. All item instances have an Item ID field.
     let [el] = await page.$x(`//h2[contains(text(), "${itemPrefix}-")]`);
+    console.log("1", el);
     expect([el].length).toBeGreaterThan(0);
     //  Acceptance criterion 2. All item instances have a Tags field.
     let elementSelector = '[aria-label="Tags Menu"] span svg';
     el = await page.$eval(elementSelector, () => true).catch(() => false);
-    expect([el].length).toBeGreaterThan(0);
+    console.log(el);
+    expect(el).toBe(true);
     //  Acceptance criterion 3. All item instances have a Comments field.
     await page.click('[data-testid="messagesButton"]');
     await page.waitForTimeout(1000);

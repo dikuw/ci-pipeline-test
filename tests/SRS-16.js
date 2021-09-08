@@ -11,6 +11,7 @@ exports.SRS16 = async ({ itemType, itemNamePrefix }, page) => {
   const { itemPrefix, dataValue, user, module, headerCategory, category, singleton } = itemType;
 
   let results = [];
+  let pass = false;
 
   await login(page, user);
 
@@ -24,21 +25,25 @@ exports.SRS16 = async ({ itemType, itemNamePrefix }, page) => {
   }
   //  Acceptance criterion 1. All item instances have an Item ID field.
   let [el] = await page.$x(`//h2[contains(text(), "${itemPrefix}-")]`);
-  results.push({ el });
+  pass = el ? true : false;
+  results.push(pass);
   //  Acceptance criterion 2. All item instances have a Tags field.
   let elementSelector = '[aria-label="Tags MenuFAIL"] span svg';
-  el = await page.$eval(elementSelector, () => true).catch(() => false);
-  results.push({ el });
+  pass = await page.$eval(elementSelector, () => true).catch(() => false);
+  results.push(pass);
   //  Acceptance criterion 3. All item instances have a Comments field.
   await page.click('[data-testid="messagesButton"]');
   await page.waitForTimeout(1000);
   [el] = await page.$x(`//h2[contains(text(), "Comments")]`);
-  results.push({ el });
+  pass = el ? true : false;
+  results.push(pass);
   //  Acceptance criterion 4. All item instances have a History field.
   await page.click('[data-testid="historyButton"]');
   await page.waitForTimeout(1000);
   [el] = await page.$x(`//h2[contains(text(), "History")]`);
-  results.push({ el });
+  pass = el ? true : false;
+  results.push(pass);
+
   await logout(page);
 
   return results;
