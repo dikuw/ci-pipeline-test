@@ -11,7 +11,7 @@ const server = app.listen(app.get('port'), () => {
   console.log(`Express running on port ${server.address().port}`);
 });
 
-testRunner = async () => {
+testRunner = async (server) => {
 
   const browser = await puppeteer.launch({ 
     headless: true
@@ -52,8 +52,12 @@ testRunner = async () => {
 
     await browser.close();
 
+    process.exit(0);
+
   }
   
 }
 
 testRunner();
+
+
