@@ -52,17 +52,12 @@ testRunner = async () => {
       process.exit(0);
     }
 
-    results.some(item => !item) ? console.log('fail') : console.log('pass');
-
   } catch (err) {
 
     console.log(err);
+    process.exit(1);
 
-  } finally {
-
-    process.exit(0);
-
-  }
+  } 
   
 }
 
