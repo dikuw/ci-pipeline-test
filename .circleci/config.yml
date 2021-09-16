@@ -27,4 +27,7 @@ jobs:
       #     command: npm run test
       - run:
           name: Run ATT tests
-          command: node index.js
+          command: node tests/SRS-16a.js
+      - run:
+          name: Run ATT tests
+          command: node tests/SRS-777.js
