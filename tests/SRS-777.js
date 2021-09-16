@@ -19,7 +19,7 @@ exports.SRS777 = async ({ itemType }, page) => {
   await page.waitForSelector(selector);
   let el = await page.$(selector);
   let value = await page.evaluate(el => el.textContent, el);
-  pass = value === "v5.1.3" ? true : false;
+  pass = value === "v5.1.2" ? true : false;
   results.push(pass);
 
   await logout(page);
