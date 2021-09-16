@@ -1,12 +1,39 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 
-const { SRS16 } = require('./tests/SRS-16');
-const { SRS777 } = require('./tests/SRS-777');
+//  SRS-777 System Version    //
+//  Requirement:  
+//  SRS-777: As a user logged into the system, I need the version of the application to display.
+//  Acceptance critiera:
+//  1. The software version is displayed to a logged-in user.
+const { login, logout } = require('./shared/shared');
+
+const SRS777 = async ({ itemType }, page) => {
+  const { owner } = itemType;
+
+  let results = [];
+  let pass = false;
+
+  await login(page, owner);
+  //  Acceptance criterion 1. The software version is displayed to a logged-in user.
+  await page.waitForSelector('#settings-button');
+  await page.click('#settings-button');
+  let selector = '.MuiTypography-displayInline:nth-of-type(2)';
+  await page.waitForSelector(selector);
+  let el = await page.$(selector);
+  let value = await page.evaluate(el => el.textContent, el);
+  pass = value === "v5.1.2" ? true : false;
+  results.push(pass);
+
+  await logout(page);
+
+  return results;
+
+};
 
 const app = express();
 
-app.set('port', 3003);
+app.set('port', 3004);
 
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running on port ${server.address().port}`);
@@ -40,12 +67,8 @@ testRunner = async () => {
   }
 
   try {
-
-    let results = [];
     
-    results.push(await SRS16(testParams, page));
-    
-    results.push(await SRS777(testParams, page));
+    let results = await SRS777(testParams, page);
 
     await browser.close();
 
