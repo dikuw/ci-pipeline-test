@@ -40,4 +40,4 @@ jobs:
           name: Run tests
           command: |
             set -e
-            TEST_FILES=$(circleci tests glob "tests/standalone/*.js" | circleci tests split --split-by=timings)
+            TEST_FILES=$(circleci tests glob "tests/standalone/*.js")
