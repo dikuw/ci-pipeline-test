@@ -38,6 +38,4 @@ jobs:
       #     command: node index.js
       - run:
           name: Run tests
-          command: |
-            set -e
-            TEST_FILES=$(circleci tests glob "tests/standalone/*.js")
+          command: circleci tests glob "tests/standalone/*.js" | circleci tests split
