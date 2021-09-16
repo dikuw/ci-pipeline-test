@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 //  SRS-777: As a user logged into the system, I need the version of the application to display.
 //  Acceptance critiera:
 //  1. The software version is displayed to a logged-in user.
-const { login, logout } = require('./shared/shared');
+const { login, logout } = require('../shared/shared');
 
 const SRS777 = async ({ itemType }, page) => {
   const { owner } = itemType;

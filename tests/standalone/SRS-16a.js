@@ -8,7 +8,7 @@ const puppeteer = require('puppeteer');
 //  2. All item instances have a Tags field.
 //  3. All item instances have a Comments field.
 //  4. All item instances have a History field.
-const { login, logout, createItem, openTableView } = require('./shared/shared');
+const { login, logout, createItem, openTableView } = require('../shared/shared');
 
 const SRS16 = async ({ itemType, itemNamePrefix }, page) => {
   const { itemPrefix, dataValue, user, module, headerCategory, category, singleton } = itemType;
