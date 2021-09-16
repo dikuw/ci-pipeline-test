@@ -40,4 +40,4 @@ jobs:
           name: Run tests
           command: |
             TEST=$(circleci tests glob "**/tests/standalone/*.js" | circleci tests split)
-            yarn test $TEST
+            node $TEST
