@@ -43,8 +43,8 @@ testRunner = async () => {
 
     let results = [];
     
-    results.push(await SRS16(testParams, page));
-    results.push(await SRS777(testParams, page));
+    results.push(...await SRS16(testParams, page));
+    results.push(...await SRS777(testParams, page));
 
     await browser.close();
 
