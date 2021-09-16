@@ -26,6 +26,7 @@ jobs:
       # - run:
       #     name: Run tests
       #     command: npm run test
+      # The below two steps run in about the same time as the single 'node index.js' command
       # - run:
       #     name: Run ATT tests
       #     command: node tests/SRS-16a.js
