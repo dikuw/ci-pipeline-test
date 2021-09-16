@@ -38,4 +38,4 @@ jobs:
       #     command: node index.js
       - run:
           name: Run tests
-          command: circleci tests glob "tests/standalone/*.js" | circleci tests split
+          command: circleci tests glob "../tests/standalone/*.js" | circleci tests split
